@@ -57,9 +57,9 @@ for (int i = 0; i < maxPets; i++)
             animalSpecies = "cat";
             animalID = "c4";
             animalAge = "?";
-            animalPhysicalDescription = "";
-            animalPersonalityDescription = "";
-            animalNickname = "";
+            animalPhysicalDescription = "tbd";
+            animalPersonalityDescription = "tbd";
+            animalNickname = "tbd";
 
             break;
 
@@ -289,12 +289,47 @@ do
             // Ensure animal ages and physical descriptions are complete
             //Console.WriteLine("Challenge Project - please check back soon to see progress.");
 
-             for (int i = 0; i < maxPets; i++)
+            for (int i = 0; i < maxPets; i++)
             {
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
-                    Console.WriteLine(ourAnimals[i,0]);
+                    Console.WriteLine(ourAnimals[i, 0]);
+                    if (ourAnimals[i, 2] == "Age: " + "?")
+                    {
+                        validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"I need the age of {ourAnimals[i, 0]}.");
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                animalAge = readResult;
+                                validEntry = int.TryParse(animalAge, out petAge);
+
+                            }
+
+                        } while (validEntry == false);
+                        ourAnimals[i,2] = "Age: " + animalAge;
+                    }
+
+                    if (ourAnimals[i,4] == "Physical description: tbd")
+                    {
+                        validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"I need the physical description of {ourAnimals[i,0]}.");
+                            readResult = Console.ReadLine();
+                            if (readResult != null && readResult.Length != 0)
+                            {
+                                animalPhysicalDescription = readResult;
+                                validEntry = true;
+                            }
+                        } while (validEntry == false);
+                        ourAnimals[i,4] = "Physical description: " + animalPhysicalDescription;
+                    }
                 }
+
+                
             }
 
 
@@ -309,7 +344,7 @@ do
             // Ensure animal nicknames and personality descriptions are complete
             // Console.WriteLine("Challenge Project - please check back soon to see progress.");
 
-           
+
 
 
 
@@ -331,7 +366,7 @@ do
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
-        
+
         case "7":
             // Display all cats with a specified characteristic
             Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
